@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- TodosPage.xaml - Represents the page displaying a list of Todo items -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoApp.Pages.TodosPage"
+             Title="{Binding CategoryName}">
+
+    <!-- ToolbarItems section for adding a new Todo -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="handleAddTodo" IconImageSource="{FontImage Glyph='+', Color=White, Size=22}"/>
+    </ContentPage.ToolbarItems>
+
+    <!-- Main layout container for the page -->
+    <VerticalStackLayout>
+
+        <!-- CollectionView to display the list of Todo items -->
+        <CollectionView Margin="30, 20, 30, 30"
+                        ItemsSource="{Binding Todos}"
+                        SelectionChangedCommand="{Binding TodoSelectedCommand}"
+                        SelectedItem="{Binding SelectedTodo, Mode=TwoWay}"
+                        SelectionMode="Single">
+            <!-- LinearItemsLayout to display items in a vertical orientation with spacing -->
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+
+            <!-- DataTemplate to define the appearance of each Todo item -->
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- HorizontalStackLayout to display the checkmark icon and TodoText in a row -->
+                    <HorizontalStackLayout>
+                        <!-- Image control to show a checkmark icon for completed Todos -->
+                        <Image Source="check_done.png" IsVisible="{Binding done}"/>
+                        
+                        <!-- Label control to display the text of the Todo -->
+                        <Label Text="{Binding TodoText}" VerticalOptions="CenterAndExpand"/>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Button to delete the category, visible only when there are no Todo items -->
+        <Button Text="Eliminar categoria" IsVisible="{Binding IsEmpty}" Command="{Binding DeleteCategoryCommand}"/>
+
+    </VerticalStackLayout>
+</ContentPage>

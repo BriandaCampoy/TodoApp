@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- TodoPage.xaml - Represents the page displaying a single Todo item -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoApp.Pages.TodoPage"
+             Title="TodoPage">
+    <!-- Main layout container for the page -->
+    <VerticalStackLayout Margin="20">
+        <!-- Entry control to edit the TodoText property -->
+        <Entry Text="{Binding TodoText}"/>
+        <!-- HorizontalStackLayout to contain three buttons -->
+        <HorizontalStackLayout>
+            <!-- Button to save changes to the Todo item -->
+            <Button Text="Save" Command="{Binding editTodoCommand}"/>
+            <!-- Button to mark the Todo item as done -->
+            <Button Text="Done" Command="{Binding doneCommand}"/>
+            <!-- Button to delete the Todo item -->
+            <Button Text="Delete" Command="{Binding deleteTodoCommand}"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
